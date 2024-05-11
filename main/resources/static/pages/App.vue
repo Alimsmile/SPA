@@ -1,10 +1,10 @@
 <script>
 
 
+import Mine from "../components/Mine.vue";
+
 export default {
-
-
-  components: {},
+  components: {Mine},
 
 
   data() {
@@ -14,20 +14,23 @@ export default {
         {
           status: 0,   // состояние
           position: 1, // положение
+          /* Очередь вызовов
+          {
+            floorNum: 0, // номер этажа
+          }
+          */
+          listChallenges: [],
         },
         {
           status: 0,   // состояние
-          position: 3, // положение
+          position: 2, // положение
+          //Очередь вызовов
+          listChallenges: [],
         }
       ],
-      /* Очередь вызовов
-        {
-          floorNum: 0, // номер этажа
-        }
-       */
-      listChallenges: [],
-      // Этажи
-      floors: [1, 2, 3, 4, 5],
+
+      // Количество этажей
+      countFloors: 5,
     }
   },
 
@@ -55,15 +58,13 @@ export default {
 
 
     <!-- Шахты -->
-    <div class="mine" v-for="mine in elevators" :mine="mine" :style="{'height': 100 * floors.length + 'px'}">
-      <div class="elevator" :style="{'top': (floors.length - mine.position) * 100  + 'px'}">{{mine.position}}</div>
-    </div>
+    <Mine v-for="elevator in elevators" :key="elevator.id" :elevator.sync="elevator" :countFloors="countFloors"></Mine>
 
 
     <!-- Этажи -->
-    <div class="floors" :style="{'height': 100 * floors.length + 'px'}">
-      <div class="floor" v-for="floor in floors" :floor="floor">
-        {{floors.length - floor + 1}}
+    <div class="floors" :style="{'height': 100 * countFloors + 'px'}">
+      <div class="floor" v-for="floor in countFloors" :floor="floor">
+        {{countFloors - floor + 1}}
         <button>⦿</button>
       </div>
     </div>
@@ -81,20 +82,6 @@ export default {
   border-bottom: 5px solid #373736;
 
 
-  .mine {
-    width: 100px;
-    margin-right: 10px;
-    border-left: 3px solid #d9dad9;
-    border-right: 3px solid #d9dad9;
-
-    .elevator {
-      width: 100px;
-      height: 100px;
-      background-color: #00fdfe;
-      position: relative;
-    }
-
-  }
 
 
   .floors {
