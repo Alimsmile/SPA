@@ -42,15 +42,6 @@ export default defineComponent({
             currentPosition--;
           }
 
-          /*if (this.elevator.position < this.elevator.listChallenges[0]) {
-            let time = this.elevator.listChallenges[0] - this.elevator.position;
-          }
-          else if (this.elevator.position > this.elevator.listChallenges[0]) {
-            let time = this.elevator.position - this.elevator.listChallenges[0];
-
-          }*/
-
-
           document.querySelector(".Elevator").style.bottom = currentPosition + 'px';
 
 
@@ -79,19 +70,11 @@ export default defineComponent({
     // Отработка очереди с вызовами
     executeListChallenges() {
       if (this.elevator.status) {
-        console.log("вышел")
+        /*console.log("вышел")*/
         return;
       }
 
-      console.log("отработай очередь")
-      // в отработке рекурсия, управление активностью лифта, этажа
-
-
-
-      // тут вызываем сам метод перемещения, думаю, будем считать время, которое необходимо для перемешния здесь
-      // и пускаем здесь таймер на это время и далее по очереди
-
-
+      /*console.log("отработай очередь")*/
 
       // Определяем текущее положение лифта
       let bottom = document.querySelector(".Elevator").style.bottom;
